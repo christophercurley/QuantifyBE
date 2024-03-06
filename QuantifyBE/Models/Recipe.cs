@@ -9,7 +9,7 @@ namespace QuantifyBE.Models
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
-
+        public List<RecipeFood> Foods { get; set; } = new List<RecipeFood>();
         public int Likes { get; set; }
     }
 }
