@@ -18,6 +18,10 @@ namespace QuantifyBE.Data
         {
             modelBuilder.Entity<Food>()
                 .HasIndex(f => f.Name).IsUnique();
+
+            modelBuilder.Entity<RecipeFood>()
+                .HasKey(rf => new { rf.RecipeId, rf.FoodId });
+
         }
     }
 }
