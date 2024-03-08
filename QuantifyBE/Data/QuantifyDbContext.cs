@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using QuantifyBE.Models;
 
 namespace QuantifyBE.Data
 {
-    public class QuantifyDbContext : DbContext
+    public class QuantifyDbContext : IdentityDbContext<AppUser>
     {
         public QuantifyDbContext(DbContextOptions<QuantifyDbContext> options) : base(options)
         {
@@ -16,6 +17,8 @@ namespace QuantifyBE.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Food>()
                 .HasIndex(f => f.Name).IsUnique();
 
