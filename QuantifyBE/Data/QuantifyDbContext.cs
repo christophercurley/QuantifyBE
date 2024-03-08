@@ -9,6 +9,11 @@ namespace QuantifyBE.Data
         {
         }
 
+        DbSet<Food> Foods { get; set; }
+        DbSet<Recipe> Recipes { get; set; }
+
+        DbSet<RecipeFood> RecipeFoods { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Food>()
