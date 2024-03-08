@@ -12,8 +12,8 @@ namespace QuantifyBE.Data
 
         DbSet<Food> Foods { get; set; }
         DbSet<Recipe> Recipes { get; set; }
-
         DbSet<RecipeFood> RecipeFoods { get; set; }
+        DbSet<JournalEntry> JournalEntries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +25,10 @@ namespace QuantifyBE.Data
             modelBuilder.Entity<RecipeFood>()
                 .HasKey(rf => new { rf.RecipeId, rf.FoodId });
 
+            modelBuilder.Entity<JournalEntry>()
+            .HasOne(j => j.AppUser)
+            .WithMany()
+            .HasForeignKey(j => j.UserId);
         }
     }
 }
