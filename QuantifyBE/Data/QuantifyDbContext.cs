@@ -36,7 +36,7 @@ namespace QuantifyBE.Data
 
             modelBuilder.Entity<RoutineExerciseDetails>()
                 .HasOne(red => red.Routine)
-                .WithMany(red => red.ExerciseDetails)
+                .WithMany(r => r.ExerciseDetails)
                 .HasForeignKey(red => red.ExerciseId);
 
             modelBuilder.Entity<RoutineExerciseDetails>()
@@ -46,7 +46,7 @@ namespace QuantifyBE.Data
 
             modelBuilder.Entity<SetDetail>(entity =>
             {
-                entity.HasKey(e => new { e.RoutineExerciseDetailId, e.SetNumber });
+                entity.HasKey(e => e.Id);
 
                 entity.HasOne(e => e.RoutineExerciseDetails)
                     .WithMany(d => d.SetDetails)
