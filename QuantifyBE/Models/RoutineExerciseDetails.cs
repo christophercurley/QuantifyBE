@@ -9,9 +9,12 @@
         public Exercise Exercise { get; set; }
 
 
-        public int Sets { get; set; }
-        public int Reps { get; set; }
-        public int[] Weights { get; set; }
+        public List<SetDetail> SetDetails { get; set; }
         public string Notes { get; set; }
+
+        public RoutineExerciseDetails()
+        {
+            SetDetails = new List<SetDetail>();
+        }
     }
 }

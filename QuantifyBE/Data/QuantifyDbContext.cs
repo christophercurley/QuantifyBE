@@ -30,6 +30,28 @@ namespace QuantifyBE.Data
             .HasOne(j => j.AppUser)
             .WithMany()
             .HasForeignKey(j => j.UserId);
+
+            modelBuilder.Entity<RoutineExerciseDetails>()
+                .HasKey(red => new { red.RoutineId, red.ExerciseId });
+
+            modelBuilder.Entity<RoutineExerciseDetails>()
+                .HasOne(red => red.Routine)
+                .WithMany(red => red.ExerciseDetails)
+                .HasForeignKey(red => red.ExerciseId);
+
+            modelBuilder.Entity<RoutineExerciseDetails>()
+                .HasOne(red => red.Exercise)
+                .WithMany()
+                .HasForeignKey(red => red.ExerciseId);
+
+            modelBuilder.Entity<SetDetail>(entity =>
+            {
+                entity.HasKey(e => new { e.RoutineExerciseDetailId, e.SetNumber });
+
+                entity.HasOne(e => e.RoutineExerciseDetails)
+                    .WithMany(d => d.SetDetails)
+                    .HasForeignKey(e => e.RoutineExerciseDetailId);
+            });
         }
     }
 }
