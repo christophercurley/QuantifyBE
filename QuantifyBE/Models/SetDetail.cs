@@ -5,7 +5,8 @@ namespace QuantifyBE.Models
     public class SetDetail
     {
         public Guid Id { get; set; }
-        public Guid RoutineExerciseDetailId {  get; set; }
+        public Guid RoutineId { get; set; }
+        public Guid ExerciseId { get; set; }
         public RoutineExerciseDetails RoutineExerciseDetails { get; set;}
 
         public int SetNumber { get; set; }

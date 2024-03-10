@@ -27,9 +27,9 @@ namespace QuantifyBE.Data
                 .HasKey(rf => new { rf.RecipeId, rf.FoodId });
 
             modelBuilder.Entity<JournalEntry>()
-            .HasOne(j => j.AppUser)
-            .WithMany()
-            .HasForeignKey(j => j.UserId);
+                .HasOne(j => j.AppUser)
+                .WithMany()
+                .HasForeignKey(j => j.UserId);
 
             modelBuilder.Entity<RoutineExerciseDetails>()
                 .HasKey(red => new { red.RoutineId, red.ExerciseId });
@@ -49,9 +49,14 @@ namespace QuantifyBE.Data
                 entity.HasKey(e => e.Id);
 
                 entity.HasOne(e => e.RoutineExerciseDetails)
-                    .WithMany(d => d.SetDetails)
-                    .HasForeignKey(e => e.RoutineExerciseDetailId);
+                    .WithMany(red => red.SetDetails)
+                    .HasForeignKey(e => new {e.RoutineId, e.ExerciseId});
             });
+
+            modelBuilder.Entity<UserRoutineLogs>()
+                .HasOne(url => url.AppUser)
+                .WithMany()
+                .HasForeignKey(url => url.UserId);
         }
     }
 }
