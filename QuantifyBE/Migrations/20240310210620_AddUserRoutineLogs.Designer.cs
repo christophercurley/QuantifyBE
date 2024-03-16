@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuantifyBE.Data;
 
@@ -11,9 +12,11 @@ using QuantifyBE.Data;
 namespace QuantifyBE.Migrations
 {
     [DbContext(typeof(QuantifyDbContext))]
-    partial class QuantifyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240310210620_AddUserRoutineLogs")]
+    partial class AddUserRoutineLogs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
