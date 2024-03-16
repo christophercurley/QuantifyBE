@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using QuantifyBE.Data;
 using QuantifyBE.Models;
+using QuantifyBE.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,9 @@ builder.Services.AddAuthentication().AddBearerToken(IdentityConstants.BearerSche
 
 // Add Authorization
 builder.Services.AddAuthorizationBuilder();
+
+// Register Services
+builder.Services.AddScoped<IFoodService, FoodService>();
 
 var app = builder.Build();
 

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QuantifyBE.Models;
+using QuantifyBE.Services;
 
 namespace QuantifyBE.Controllers
 {
@@ -6,11 +8,18 @@ namespace QuantifyBE.Controllers
     [Route("f")]
     public class FoodController : ControllerBase
     {
+        private readonly IFoodService _foodService;
+
+        public FoodController(IFoodService foodService)
+        {
+            _foodService = foodService;
+        }
 
         [HttpGet]
-        public IActionResult List()
+        public async Task<IActionResult> List()
         {
-            return Ok("List OK!");
+            IEnumerable<Food> list = await _foodService.GetAllFoodAsync();
+            return Ok(list);
         }
 
         [HttpGet("{id}")]
