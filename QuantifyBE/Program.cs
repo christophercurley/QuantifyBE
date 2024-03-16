@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using QuantifyBE.Data;
 using QuantifyBE.Models;
+using QuantifyBE.Repositories;
 using QuantifyBE.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +27,9 @@ builder.Services.AddAuthorizationBuilder();
 
 // Register Services
 builder.Services.AddScoped<IFoodService, FoodService>();
+
+// Register Repositories
+builder.Services.AddScoped<IFoodRespository, FoodRepository>();
 
 var app = builder.Build();
 

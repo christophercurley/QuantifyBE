@@ -28,10 +28,25 @@ namespace QuantifyBE.Controllers
             return Ok($"GetById OK! Id: {id}");
         }
 
-        [HttpPost("{id}")]
-        public IActionResult Create(Guid id)
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] Food foodDTO)
         {
-            return Ok($"AddFood OK! Id: {id}");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Food food = new Food
+            {
+                Name = foodDTO.Name,
+                Protein = foodDTO.Protein,
+                Fat = foodDTO.Fat,
+                Carbohydrates = foodDTO.Carbohydrates,
+                Calories = foodDTO.Calories,
+            };
+
+            var createdFood = await _foodService.CreateFoodAsync(food);
+            return CreatedAtAction(nameof(GetById), new { id = createdFood.Id }, createdFood);
         }
 
         [HttpPut("{id}")]

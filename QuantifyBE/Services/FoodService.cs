@@ -1,9 +1,17 @@
 ﻿using QuantifyBE.Models;
+using QuantifyBE.Repositories;
 
 namespace QuantifyBE.Services
 {
     public class FoodService : IFoodService
     {
+        private readonly IFoodRespository _foodRepository;
+
+        public FoodService(IFoodRespository foodRespository)
+        {
+            _foodRepository = foodRespository;
+        }
+
         Food chickenBreast = new Food
         {
             Id = Guid.NewGuid(),
@@ -42,8 +50,8 @@ namespace QuantifyBE.Services
 
         public async Task<Food> CreateFoodAsync(Food food)
         {
-            Console.WriteLine("Food was created nigga!");
-            return new Food();
+            var createdFood = await _foodRepository.CreateAsync(food);
+            return createdFood;
         }
 
         public async Task<Food> UpdateFoodAsync(Food food)
