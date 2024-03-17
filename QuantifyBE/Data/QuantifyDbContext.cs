@@ -31,6 +31,18 @@ namespace QuantifyBE.Data
                 .WithMany()
                 .HasForeignKey(j => j.UserId);
 
+            modelBuilder.Entity<JournalEntry>()
+                .HasOne(j => j.Food)
+                .WithMany() 
+                .HasForeignKey(j => j.FoodId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<JournalEntry>()
+                .HasOne(j => j.Recipe)
+                .WithMany()
+                .HasForeignKey(j => j.RecipeId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<RoutineExerciseDetails>()
                 .HasKey(red => new { red.RoutineId, red.ExerciseId });
 
@@ -50,7 +62,7 @@ namespace QuantifyBE.Data
 
                 entity.HasOne(e => e.RoutineExerciseDetails)
                     .WithMany(red => red.SetDetails)
-                    .HasForeignKey(e => new {e.RoutineId, e.ExerciseId});
+                    .HasForeignKey(e => new { e.RoutineId, e.ExerciseId });
             });
 
             modelBuilder.Entity<UserRoutineLogs>()

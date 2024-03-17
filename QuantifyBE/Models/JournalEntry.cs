@@ -11,11 +11,9 @@ namespace QuantifyBE.Models
         public string UserId { get; set; }
         public AppUser AppUser { get; set; }
 
-
         // Optional Food Relationship
         public Guid? FoodId { get; set; }
         public Food Food { get; set; }
-
 
         //Optional Recipe relationship
         public Guid? RecipeId { get; set; }
