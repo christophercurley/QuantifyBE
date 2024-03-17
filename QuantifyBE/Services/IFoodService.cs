@@ -7,7 +7,7 @@ namespace QuantifyBE.Services
         Task<IEnumerable<Food>> GetAllFoodAsync();
         Task<Food> GetFoodByIdAsync(Guid id);
         Task<Food> CreateFoodAsync(Food food);
-        Task<Food> UpdateFoodAsync(Food food);
+        Task<Food?> UpdateFoodAsync(Food food);
         Task<Boolean> DeleteFoodByIdAsync(Guid id);
     }
 }

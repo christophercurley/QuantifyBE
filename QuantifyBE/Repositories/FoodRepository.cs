@@ -32,9 +32,22 @@ namespace QuantifyBE.Repositories
             return food;
         }
 
-        public async Task<Food> UpdateFoodAsync(Food food)
+        public async Task<Food?> UpdateFoodAsync(Food food)
         {
-            return new Food();
+            var foodToBeChanged = await GetByIdAsync(food.Id);
+
+            if(foodToBeChanged != null)
+            {
+                foodToBeChanged.Name = food.Name;
+                foodToBeChanged.Protein = food.Protein;
+                foodToBeChanged.Carbohydrates = food.Carbohydrates;
+                foodToBeChanged.Fat = food.Fat;
+                foodToBeChanged.Calories = food.Calories;
+
+                await _context.SaveChangesAsync();
+                return foodToBeChanged;
+            }
+            return null;
         }
 
         public async Task DeleteFoodByIdAsync(Food food)

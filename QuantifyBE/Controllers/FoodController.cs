@@ -51,10 +51,17 @@ namespace QuantifyBE.Controllers
             return CreatedAtAction(nameof(GetById), new { id = createdFood.Id }, createdFood);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Update(Guid id)
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] Food food)
         {
-            return Ok($"Edit OK! Id: {id}");
+            var updatedFood = await _foodService.UpdateFoodAsync(food);
+
+            if (updatedFood == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(updatedFood);
         }
 
         [HttpDelete("{id}")]

@@ -50,10 +50,16 @@ namespace QuantifyBE.Services
             return createdFood;
         }
 
-        public async Task<Food> UpdateFoodAsync(Food food)
+        public async Task<Food?> UpdateFoodAsync(Food food)
         {
-            Console.WriteLine("Food was updated!");
-            return new Food();
+            var updatedFood = await _foodRepository.UpdateFoodAsync(food);
+
+            if (updatedFood == null)
+            {
+                return null;
+            }
+
+            return updatedFood;
         }
 
         public async Task<Boolean> DeleteFoodByIdAsync(Guid id)

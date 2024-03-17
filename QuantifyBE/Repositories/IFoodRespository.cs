@@ -7,7 +7,7 @@ namespace QuantifyBE.Repositories
         Task<IEnumerable<Food>> GetAllAsync();
         Task<Food> GetByIdAsync(Guid id);
         Task<Food> CreateAsync(Food food);
-        Task<Food> UpdateFoodAsync(Food food);
+        Task<Food?> UpdateFoodAsync(Food food);
         Task DeleteFoodByIdAsync(Food food);
     }
 }
