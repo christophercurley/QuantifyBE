@@ -12,26 +12,6 @@ namespace QuantifyBE.Services
             _foodRepository = foodRespository;
         }
 
-        Food chickenBreast = new Food
-        {
-            Id = Guid.NewGuid(),
-            Name = "Chicken Breast",
-            Calories = 100,
-            Protein = 40f,
-            Fat = 8f,
-            Carbohydrates = 12f
-        };
-
-        Food beef = new Food
-        {
-            Id = Guid.NewGuid(),
-            Name = "Chicken Breast",
-            Calories = 120,
-            Protein = 48f,
-            Fat = 22f,
-            Carbohydrates = 7f
-        };
-
         public async Task<IEnumerable<Food>> GetAllFoodAsync()
         {
             var foodList = await _foodRepository.GetAllAsync();
