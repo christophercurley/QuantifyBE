@@ -23,9 +23,11 @@ namespace QuantifyBE.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(Guid id)
+        public async Task<IActionResult> GetById(Guid id)
         {
-            return Ok($"GetById OK! Id: {id}");
+            var food = await _foodService.GetFoodByIdAsync(id);
+
+            return Ok(food);
         }
 
         [HttpPost]
@@ -56,9 +58,16 @@ namespace QuantifyBE.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            return Ok($"Delete OK! Id: {id}");
+            Boolean doesExist = await _foodService.DeleteFoodByIdAsync(id);
+
+            if (!doesExist)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
     }
 }

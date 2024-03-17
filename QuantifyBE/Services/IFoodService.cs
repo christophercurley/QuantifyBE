@@ -8,6 +8,6 @@ namespace QuantifyBE.Services
         Task<Food> GetFoodByIdAsync(Guid id);
         Task<Food> CreateFoodAsync(Food food);
         Task<Food> UpdateFoodAsync(Food food);
-        Task DeleteFoodByIdAsync(Guid id);
+        Task<Boolean> DeleteFoodByIdAsync(Guid id);
     }
 }

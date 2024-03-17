@@ -8,6 +8,6 @@ namespace QuantifyBE.Repositories
         Task<Food> GetByIdAsync(Guid id);
         Task<Food> CreateAsync(Food food);
         Task<Food> UpdateFoodAsync(Food food);
-        Task DeleteFoodByIdAsync(Guid id);
+        Task DeleteFoodByIdAsync(Food food);
     }
 }

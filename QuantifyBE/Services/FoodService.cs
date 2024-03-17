@@ -34,18 +34,14 @@ namespace QuantifyBE.Services
 
         public async Task<IEnumerable<Food>> GetAllFoodAsync()
         {
-            List<Food> foodList = new List<Food>
-            {
-                chickenBreast, beef
-            };
-
+            var foodList = await _foodRepository.GetAllAsync();
             return foodList;
         }
 
         public async Task<Food> GetFoodByIdAsync(Guid id)
         {
-            Console.Write($"Here's yo food: {id}");
-            return new Food();
+            var food = await _foodRepository.GetByIdAsync(id);
+            return food;
         }
 
         public async Task<Food> CreateFoodAsync(Food food)
@@ -60,9 +56,17 @@ namespace QuantifyBE.Services
             return new Food();
         }
 
-        public async Task DeleteFoodByIdAsync(Guid id)
+        public async Task<Boolean> DeleteFoodByIdAsync(Guid id)
         {
-            Console.WriteLine("Food was deleted!");
+            var foodToBeDeleted = await _foodRepository.GetByIdAsync(id);
+            if (foodToBeDeleted == null)
+            {
+                return false;
+            }
+
+            await _foodRepository.DeleteFoodByIdAsync(foodToBeDeleted);
+
+            return true;
         }
     }
 }

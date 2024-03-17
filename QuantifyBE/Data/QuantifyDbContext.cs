@@ -10,11 +10,11 @@ namespace QuantifyBE.Data
         {
         }
 
-        DbSet<Food> Foods { get; set; }
-        DbSet<Recipe> Recipes { get; set; }
-        DbSet<RecipeFood> RecipeFoods { get; set; }
-        DbSet<JournalEntry> JournalEntries { get; set; }
-        DbSet<Exercise> Exercises { get; set; }
+        public DbSet<Food> Foods { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<RecipeFood> RecipeFoods { get; set; }
+        public DbSet<JournalEntry> JournalEntries { get; set; }
+        public DbSet<Exercise> Exercises { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
